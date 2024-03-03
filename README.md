@@ -1,7 +1,6 @@
-# Real Image Challenge 2016
-# Distributor Management System
+# Real Image Challenge 2016 (Distribution System)
 
-This project is a distributor management system designed to handle the creation of distributors, sub-distributors, checking permissions, and viewing distributor information. The system utilizes a CSV file containing data about cities, states, and countries for region validation.
+This project is a distribution system designed to handle the creation of distributors, sub-distributors, checking permissions, and viewing distributor information. The system utilizes a CSV file containing data about cities, states, and countries for region validation.
 
 ## How to Run the code base
 Ensure you have Go installed on your system. Navigate to the root directory of the project and run the following command:
@@ -36,11 +35,11 @@ To run the program, execute the `main.go` file. Upon execution, the program will
 Use the arrow keys to navigate: ↓ ↑ → ←
 Select one of the below choices:
 1. Create a new distributor
-2. Add Movie
-3. Create a sub distributor
-4. Check permission for a distributor
-5. Add distributors for the producer
-6. View Distributors information     
+2. Create a sub distributor
+3. Check permission for a distributor
+4. Add distributors for the producer
+5. View Distributors information
+6. Create a new movie 
 7. Exit the program
 
 ```
