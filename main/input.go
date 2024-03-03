@@ -18,13 +18,13 @@ func PromptMenu() string {
 	prompt := promptui.Select{
 		Label: "Select one of the below choices",
 		Items: []string{
-			"Add a new movie",
 			"Create a new distributor",
 			"Create a sub distributor",
 			"Check permission for a distributor",
-			"Add distributors to a producer",
 			"View Distributors information",
 			"Exit",
+			"Add distributors to a producer",
+			"Create a movie",
 		},
 	}
 
@@ -41,16 +41,16 @@ func PromptMovie() (movies.Movie, producer.Producer) {
 	var crew []movies.Crew
 
 	promptName := promptui.Prompt{
-		Label:       "Enter movie name:",
-		HideEntered: true,
+		Label:       "Enter movie name",
+		HideEntered: false,
 	}
 	name, _ := promptName.Run()
 	movie.Name = name
-	fmt.Println(promptName.Label, name)
 
 	promptCrew := promptui.Prompt{
 		Label:       "Enter the Crews roles like technician, makeup, etc",
-		HideEntered: true,
+		Default:     "",
+		HideEntered: false,
 	}
 	crewInput, _ := promptCrew.Run()
 	crew = make([]movies.Crew, 0)
@@ -60,7 +60,6 @@ func PromptMovie() (movies.Movie, producer.Producer) {
 		crew = append(crew, person)
 	}
 	movie.Crew = crew
-	fmt.Println(promptCrew.Label, crewInput)
 
 	promptProducer := promptui.Prompt{
 		Label:       "Enter the Producer Name like Nolan or Spielberg or Guru Dutt",
@@ -69,7 +68,6 @@ func PromptMovie() (movies.Movie, producer.Producer) {
 	prodInput, _ := promptProducer.Run()
 	prod := producer.CreateProducer(prodInput, nil)
 	movie.AddProducer(prod)
-	fmt.Println(promptProducer.Label, prodInput)
 	return movie, prod
 }
 

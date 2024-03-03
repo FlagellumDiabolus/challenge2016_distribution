@@ -25,6 +25,14 @@ func main() {
 		switch choice {
 		case "Create a movie":
 			movie, prod := PromptMovie()
+			if movie.Name == "" || prod.Name == "" {
+				fmt.Println("\n empty movie created. \n")
+			}
+			errorMsg := validator.ValidateMovie(movie, prod, films, producers)
+			if len(errorMsg) > 0 {
+				fmt.Println(strings.Join(errorMsg, "\n"))
+				continue
+			}
 			films = append(films, movie)
 			producers = append(producers, prod)
 		case "Create a new distributor":
@@ -61,7 +69,7 @@ func main() {
 			for _, region := range checkPermissionData.Regions {
 				permissions.CheckPermission(dist, region)
 			}
-		case "Add distributor to a producer":
+		case "Add distributors to a producer":
 			producerName, distributorNames := PromptAddDistributorToProducer()
 			fmt.Println("Only adding those distributors which are already present")
 			for _, pro := range producers {

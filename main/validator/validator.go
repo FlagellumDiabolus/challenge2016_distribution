@@ -5,6 +5,8 @@ import (
 	"challenge2016_distribution/distribution/permissions"
 	"challenge2016_distribution/distribution/permissions/models"
 	"challenge2016_distribution/location"
+	"challenge2016_distribution/movies"
+	"challenge2016_distribution/producer"
 	"strings"
 )
 
@@ -147,4 +149,29 @@ func ValidateCheckPermissionData(data models.CheckPermissionData, groupedData []
 	}
 
 	return errorMsg
+}
+
+func ValidateMovie(movie movies.Movie, prod producer.Producer, allMovies []movies.Movie, producers []producer.Producer) []string {
+	var errorMsg []string
+
+	if strings.TrimSpace(movie.Name) == "" {
+		errorMsg = append(errorMsg, "Producer Name must not be empty, please enter a valid producers name")
+	}
+	for _, mov := range allMovies {
+		if mov.Name == movie.Name {
+			errorMsg = append(errorMsg, "Movie already exists "+movie.Name)
+		}
+	}
+
+	return errorMsg
+
+}
+
+func ValidateProducerName(ProducerName string, producers []producer.Producer) bool {
+	for _, producerr := range producers {
+		if strings.EqualFold(producerr.Name, ProducerName) {
+			return true
+		}
+	}
+	return false
 }
